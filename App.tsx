@@ -6,93 +6,74 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
+  Colors
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import HomePage from './src/pages/HomePage';
+import Form from './src/components/Form';
+
+const Tab = createBottomTabNavigator();
 
 function App(): React.JSX.Element {
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    flex: 1
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaProvider>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        />
+      <NavigationContainer>
+        <SafeAreaView style={backgroundStyle}>
+          <Tab.Navigator
+            screenOptions={ ({route}) => ({
+              tabBarIcon: ( {focused, color, size} ) => {
+                let iconName;
+
+                switch (route.name) {
+                  case 'Home':
+                    iconName = 'ios-information-circle'
+                    break;
+                  case 'New':
+                    return <TouchableOpacity style={styles.roundButton}></TouchableOpacity>;
+                
+                  case 'List':
+                    iconName = 'ios-information-circle'
+                  default:
+                    break;
+                }
+
+                return <Ionicons name="md-checkmark-circle" size={32} color="green" />
+              },  
+              
+            })}>
+            <Tab.Screen name="Home" component={HomePage} />
+            <Tab.Screen name="New" component={Form} options={{ tabBarBadge: 3 }} />
+            <Tab.Screen name="List" component={HomePage} />
+          </Tab.Navigator>
+        </SafeAreaView>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
@@ -113,6 +94,15 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  roundButton: {
+    width: 100,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 100,
+    backgroundColor: 'blue',
+  }
 });
 
 export default App;
