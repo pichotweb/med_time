@@ -26,6 +26,8 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import HomePage from './src/pages/HomePage';
 import Form from './src/components/Form';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const Tab = createBottomTabNavigator();
 
 function App(): React.JSX.Element {
@@ -52,18 +54,20 @@ function App(): React.JSX.Element {
 
                 switch (route.name) {
                   case 'Home':
-                    iconName = 'ios-information-circle'
+                    iconName = 'home'
                     break;
                   case 'New':
-                    return <TouchableOpacity style={styles.roundButton}></TouchableOpacity>;
+                    return <TouchableOpacity style={styles.roundButton}>
+                      <Icon name={iconName} size={30} color="#000" />
+                    </TouchableOpacity>;
                 
                   case 'List':
-                    iconName = 'ios-information-circle'
+                    iconName = 'list'
                   default:
                     break;
                 }
 
-                return <Ionicons name="md-checkmark-circle" size={32} color="green" />
+                return <Icon name={iconName} size={30} color="#000" />
               },  
               
             })}>
@@ -95,13 +99,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   roundButton: {
-    width: 100,
-    height: 100,
+    marginTop: 15,
+    width: 50,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
     borderRadius: 100,
     backgroundColor: 'blue',
+    
   }
 });
 
