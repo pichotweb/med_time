@@ -58,9 +58,8 @@ function App(): React.JSX.Element {
                     break;
                   case 'New':
                     return <TouchableOpacity style={styles.roundButton}>
-                      <Icon name={iconName} size={30} color="#000" />
+                      <Icon name="plus" size={30} color="white" />
                     </TouchableOpacity>;
-                
                   case 'List':
                     iconName = 'list'
                   default:
@@ -72,7 +71,7 @@ function App(): React.JSX.Element {
               
             })}>
             <Tab.Screen name="Home" component={HomePage} />
-            <Tab.Screen name="New" component={Form} options={{ tabBarBadge: 3 }} />
+            <Tab.Screen name="New" component={Form} options={{ tabBarLabel: '' }} />
             <Tab.Screen name="List" component={HomePage} />
           </Tab.Navigator>
         </SafeAreaView>
@@ -99,15 +98,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   roundButton: {
-    marginTop: 15,
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
     borderRadius: 100,
-    backgroundColor: 'blue',
-    
+    backgroundColor: 'blue'
   }
 });
 
