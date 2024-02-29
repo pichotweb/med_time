@@ -27,6 +27,8 @@ import HomePage from './src/pages/HomePage';
 import Form from './src/components/Form';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ListPage from './src/pages/ListPage';
+import NewPage from './src/pages/NewPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,8 +73,8 @@ function App(): React.JSX.Element {
               
             })}>
             <Tab.Screen name="Home" component={HomePage} />
-            <Tab.Screen name="New" component={Form} options={{ tabBarLabel: '' }} />
-            <Tab.Screen name="List" component={HomePage} />
+            <Tab.Screen name="New" component={NewPage} options={{ tabBarLabel: '' }} />
+            <Tab.Screen name="List" component={ListPage} />
           </Tab.Navigator>
         </SafeAreaView>
       </NavigationContainer>
