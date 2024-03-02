@@ -9,10 +9,7 @@ import React from 'react';
 import {
   StatusBar,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-  View,
+  useColorScheme
 } from 'react-native';
 
 import {
@@ -23,12 +20,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import HomePage from './src/pages/HomePage';
-import Form from './src/components/Form';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-import ListPage from './src/pages/ListPage';
-import NewPage from './src/pages/NewPage';
+import BottomTabNavigator from './src/components/BottomTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -49,65 +41,11 @@ function App(): React.JSX.Element {
         />
       <NavigationContainer>
         <SafeAreaView style={backgroundStyle}>
-          <Tab.Navigator
-            screenOptions={ ({route}) => ({
-              tabBarIcon: ( {focused, color, size} ) => {
-                let iconName;
-
-                switch (route.name) {
-                  case 'Home':
-                    iconName = 'home'
-                    break;
-                  case 'New':
-                    return <TouchableOpacity style={styles.roundButton}>
-                      <Icon name="plus" size={30} color="white" />
-                    </TouchableOpacity>;
-                  case 'List':
-                    iconName = 'list'
-                  default:
-                    break;
-                }
-
-                return <Icon name={iconName} size={30} color="#000" />
-              },  
-              
-            })}>
-            <Tab.Screen name="Home" component={HomePage} />
-            <Tab.Screen name="New" component={NewPage} options={{ tabBarLabel: '' }} />
-            <Tab.Screen name="List" component={ListPage} />
-          </Tab.Navigator>
+          <BottomTabNavigator />
         </SafeAreaView>
       </NavigationContainer>
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  roundButton: {
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    borderRadius: 100,
-    backgroundColor: 'blue'
-  }
-});
 
 export default App;
