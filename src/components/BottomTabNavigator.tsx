@@ -2,7 +2,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import HomePage from '../pages/HomePage';
 import ListPage from '../pages/ListPage';
 import NewPage from '../pages/NewPage';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FloatingButton from './FloatingButton';
 
