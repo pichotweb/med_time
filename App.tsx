@@ -17,12 +17,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-
 import BottomTabNavigator from './src/components/BottomTabNavigator';
-
-const Tab = createBottomTabNavigator();
 
 function App(): React.JSX.Element {
 

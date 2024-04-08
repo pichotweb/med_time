@@ -1,6 +1,6 @@
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 
-const List = () => {
+const ListCalendar = () => {
 
   return (
     <Calendar
@@ -11,4 +11,4 @@ const List = () => {
   )
 }
 
-export default List;
+export default ListCalendar;

@@ -1,7 +1,8 @@
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomePage from '../pages/HomePage';
-import ListPage from '../pages/ListPage';
 import NewPage from '../pages/NewPage';
+import SchedulePage from '../pages/SchedulePage';
+import TimelinePage from '../pages/TimelinePage';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FloatingButton from './FloatingButton';
@@ -12,7 +13,11 @@ const BottomTabNavigator = () => {
 
   return(
     <Tab.Navigator
-    screenOptions={ ({route}) => ({ 
+    screenOptions={ ({route}) => ({
+      headerTitleAlign: 'center',
+      headerStyle: {
+        backgroundColor: 'cyan'
+      },
       tabBarIcon: ( {focused, color, size} ) => {
         let iconName: string;
 
@@ -21,7 +26,10 @@ const BottomTabNavigator = () => {
             iconName = 'home'
             break;
           case 'List':
-            iconName = 'list'
+            iconName = 'list-ol'
+            break;
+          case 'Schedule':
+            iconName = 'book'
             break;
           default:
             iconName = 'home'
@@ -46,7 +54,7 @@ const BottomTabNavigator = () => {
         ),
         tabBarButton: (props) => <FloatingButton {...props}></FloatingButton>
       }} />
-    <Tab.Screen name="List" component={ListPage} />
+    <Tab.Screen name="Schedule" component={SchedulePage} />
   </Tab.Navigator>
   )
 }

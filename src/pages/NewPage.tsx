@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import Form from "../components/Form";
 
-const NewPage = ({}) => (
+const NewPage = () => (
   <View >
     <Form></Form>
   </View>
