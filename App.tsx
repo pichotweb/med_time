@@ -19,6 +19,16 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import BottomTabNavigator from './src/components/BottomTabNavigator';
+import { MD3DarkTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'cyan',
+    secondary: 'orange'
+  }
+}
 
 function App(): React.JSX.Element {
 
@@ -30,17 +40,19 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaProvider>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-        />
-      <NavigationContainer>
-        <SafeAreaView style={backgroundStyle}>
-          <BottomTabNavigator />
-        </SafeAreaView>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <PaperProvider theme={theme}>
+      <SafeAreaProvider>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={backgroundStyle.backgroundColor}
+          />
+        <NavigationContainer>
+          <SafeAreaView style={backgroundStyle}>
+            <BottomTabNavigator />
+          </SafeAreaView>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </PaperProvider>
   );
 }
 

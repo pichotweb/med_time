@@ -2,9 +2,12 @@ import { ScrollView, StyleSheet, Text, View, useColorScheme } from "react-native
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors, DebugInstructions, Header, ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 import Section from "../components/Section";
+import { useTheme } from "react-native-paper";
 
 
 const HomePage = () => {
+
+  const theme = useTheme();
 
   const isDarkMode = useColorScheme() === 'dark';
 

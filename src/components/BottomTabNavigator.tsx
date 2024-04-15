@@ -2,13 +2,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import HomePage from '../pages/HomePage';
 import NewPage from '../pages/NewPage';
 import SchedulePage from '../pages/SchedulePage';
-import TimelinePage from '../pages/TimelinePage';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FloatingButton from './FloatingButton';
+import { useTheme } from 'react-native-paper';
 
 const BottomTabNavigator = () => {
 
+  const theme = useTheme();
   let Tab = createBottomTabNavigator();
 
   return(
@@ -16,7 +17,7 @@ const BottomTabNavigator = () => {
     screenOptions={ ({route}) => ({
       headerTitleAlign: 'center',
       headerStyle: {
-        backgroundColor: 'cyan'
+        backgroundColor: theme.colors.primary
       },
       tabBarIcon: ( {focused, color, size} ) => {
         let iconName: string;
